@@ -8,19 +8,20 @@ Your task is to design a **canonical data model** that could serve as the unifie
 
 ## Data
 
-You have been provided with three spot airing export files, each from a different provider:
+You have been provided with four spot airing files, each from a different provider:
 
-| File | Provider type | Market |
-|------|--------------|--------|
-| `spot-airings-provider-a.csv` | Sales house export (English columns) | DE |
-| `spot-airings-provider-b.csv` | Sales house export (German columns) | CH |
-| `spot-airings-provider-c.edi` | Broadcaster transmission plan (EDI format) | DE |
+| File                          | Provider type                                 | Market |
+| ----------------------------- | --------------------------------------------- | ------ |
+| `spot-airings-provider-a.csv` | Sales house export                            | DE     |
+| `spot-airings-provider-b.csv` | Sales house export                            | CH     |
+| `spot-airings-provider-c.edi` | Broadcaster transmission plan (EDI format)    | DE     |
+| `spot-airings-provider-d.csv` | Regional sales house, spot list sent by email | DE     |
 
 For the EDI format, refer to the specification in `docs/170509 EDI Format_21b.pdf`.
 
 ## Task 1 — Canonical data model
 
-Study all three files and produce a **canonical data model** as a Markdown document.
+Study all four files and produce a **canonical data model** as a Markdown document.
 
 Your model should include:
 
@@ -38,13 +39,17 @@ A flat, readable model. A short written rationale for key decisions is more valu
 
 ## Task 2 — Ingestion script
 
-Write a Python script (standard library only — no pandas, no third-party packages) that reads all three source files and writes the data to stdout as a CSV.
+Write a Python script (standard library only — no pandas, no third-party packages) that reads all four source files and writes the data to stdout as a CSV.
 
 Each output row should map to a single spot airing and include the columns from the `spot_airing` table you designed in Task 1.
 
 ### What we expect
 
-A single script that handles all three files and produces correct output for every row. Flat and readable — no unnecessary abstraction. The conversion logic for each provider can live in a separate function.
+A single script that handles all four files and produces correct output for every row. Flat and readable — no unnecessary abstraction. The conversion logic for each provider can live in a separate function.
+
+Where you derive an amount, round half up to the cent.
+
+In your README, list the data issues you found in the source files and how you handled each one.
 
 Please also include the actual output of your script — a CSV file containing all consolidated rows — alongside your submission.
 
